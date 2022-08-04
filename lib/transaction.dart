@@ -223,7 +223,8 @@ class _TransactionState extends State<Transaction> {
                                 style: TextStyle(
                                     color: Colors.white, fontSize: 22),
                               )));
-                    } else if (snapshot.hasError) {
+                    }
+                    else if (snapshot.hasError) {
                       return Icon(Icons.error_outline);
                     } else {
                       return Container(

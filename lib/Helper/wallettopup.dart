@@ -248,11 +248,9 @@ class _WalletTopupsState extends State<WalletTopups> {
               onTap: (){
                 RazorPayHelper razorHelper=new RazorPayHelper(choiceAmountController.text, context, (result){
                   if(result=="error"){
-                    // setState(() {
-                    //   saveStatus = true;
-                    // });
+
                   }else{
-                    // addOrder();
+
                   }
                 },App.localStorage.getString("userId").toString(),"",false,false);
                 razorHelper.init();
@@ -295,37 +293,6 @@ class _WalletTopupsState extends State<WalletTopups> {
                 ),
               ),
             ),
-            // Padding(
-            //   padding: const EdgeInsets.all(8.0),
-            //   child: Card(
-            //     color: Color(0xff24745E),
-            //     shape: RoundedRectangleBorder(
-            //       borderRadius: BorderRadius.circular(10.0),
-            //     ),
-            //     child: ListTile(
-            //       leading: Image.asset("assets/images/subtraction.png"),
-            //       title: Text(
-            //         "Withdraw from wallet",
-            //         style: TextStyle(color: Colors.white, fontSize: 17),
-            //       ),
-            //       subtitle: RichText(
-            //         text: TextSpan(
-            //           style: TextStyle(color: Colors.black, fontSize: 15),
-            //           children: <TextSpan>[
-            //             TextSpan(
-            //                 text: '05 July 2021', style: TextStyle(color: Colors.white54)),
-            //                TextSpan(text: '   02:12',style: TextStyle(color: Colors.white54)),
-            //
-            //           ],
-            //         ),
-            //       ),
-            //       trailing: Text(
-            //         "₹ 99",
-            //         style: TextStyle(color: Color(0xffF1D459), fontSize: 20),
-            //       ),
-            //     ),
-            //   ),
-            // ),
             SizedBox(
               height: 5,
             ),
@@ -339,72 +306,74 @@ class _WalletTopupsState extends State<WalletTopups> {
 
                     return transationModel!.data!.length > 0
                         ? Container(
-                            height: MediaQuery.of(context).size.height,
-                            child: ListView.builder(
-                                shrinkWrap: true,
-                                physics: AlwaysScrollableScrollPhysics(),
-                                itemCount: transationModel.data!.length,
-                                itemBuilder: (context, index) {
-                                  return Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Card(
-                                      color: Color(0xff24745E),
-                                      shape: RoundedRectangleBorder(
-                                        borderRadius:
-                                            BorderRadius.circular(10.0),
-                                      ),
-                                      child: ListTile(
-                                        leading: Image.asset(
-                                            "assets/images/lockercupan.png"),
-                                        title: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 6),
-                                          child: Text(
-                                            "${transationModel.data![0].message}",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontSize: 18),
-                                          ),
-                                        ),
-                                        subtitle: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 12),
-                                          child: RichText(
-                                            text: TextSpan(
+                      height: MediaQuery.of(context).size.height,
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          physics: AlwaysScrollableScrollPhysics(),
+                          itemCount: transationModel.data!.length,
+                          itemBuilder: (context, index) {
+                            return Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Card(
+                                color: Color(0xff24745E),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10.0),
+                                ),
+                                child: ListTile(
+                                  leading: Image.asset(
+                                      "assets/images/lockercupan.png"),
+                                  title: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 6),
+                                    child: Text(
+                                      "${transationModel.data![0].message}",
+                                      style: TextStyle(
+                                          color: Colors.white,
+                                          fontSize: 18),
+                                    ),
+                                  ),
+                                  subtitle: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 12),
+                                    child: RichText(
+                                      text: TextSpan(
+                                        style: TextStyle(
+                                            color: Colors.black,
+                                            fontSize: 17),
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text:
+                                              "${transationModel.data![0].dateCreated}",
                                               style: TextStyle(
-                                                  color: Colors.black,
-                                                  fontSize: 17),
-                                              children: <TextSpan>[
-                                                TextSpan(
-                                                    text:
-                                                        "${transationModel.data![0].dateCreated}",
-                                                    style: TextStyle(
-                                                        color: Colors.white54)),
-                                              ],
-                                            ),
-                                          ),
-                                        ),
-                                        trailing: Text(
-                                          "₹ ${transationModel.data![0].amount}",
-                                          style: TextStyle(
-                                              color: Color(0xffF1D459),
-                                              fontSize: 20),
-                                        ),
+                                                  color:
+                                                  Colors.white54)),
+                                        ],
                                       ),
                                     ),
-                                  );
-                                }),
-                          )
+                                  ),
+                                  trailing: Text(
+                                    "₹ ${transationModel.data![0].amount}",
+                                    style: TextStyle(
+                                        color: Color(0xffF1D459),
+                                        fontSize: 20),
+                                  ),
+                                ),
+                              ),
+                            );
+                          }),
+                    )
                         : SizedBox(
-                            height: MediaQuery.of(context).size.height,
-                            width: double.infinity,
-                            child: Center(
-                                child: Text(
+                        height: MediaQuery.of(context).size.height,
+                        width: double.infinity,
+                        child: Center(
+                            child: Text(
                               "No History Yet",
-                              style:
-                                  TextStyle(color: Colors.white, fontSize: 22),
+                              style: TextStyle(
+                                  color: Colors.white, fontSize: 22),
                             )));
-                  } else if (snapshot.hasError) {
+                  }
+                  else if (snapshot.hasError) {
                     return Icon(Icons.error_outline);
                   } else {
                     return Container(
@@ -414,7 +383,7 @@ class _WalletTopupsState extends State<WalletTopups> {
                           strokeWidth: 1,
                         ));
                   }
-                }),
+                })
           ],
         ),
       ),

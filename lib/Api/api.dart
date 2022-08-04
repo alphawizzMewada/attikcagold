@@ -257,6 +257,8 @@ Future<TransationModeOnlyAmount?> getTransationCash(String? userId) async {
       http.MultipartRequest('POST', Uri.parse(baseUrl + 'transactions'));
   request.fields.addAll({
     'user_id': App.localStorage.getString("userId").toString(),
+    'transaction_type':"wallet",
+    'type':"debit",
   });
   request.headers.addAll(headers);
 
